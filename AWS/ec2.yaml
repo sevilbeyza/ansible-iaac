@@ -1,0 +1,9 @@
+---
+- hosts: localhost       #localhost do only in your machine            
+  tasks:                  #for moving 2 line forward all chose command+]
+  - ec2:
+      instance_type: t2.micro
+      region: us-east-1
+      image:  ami-0323c3dd2da7fb37d
+      count: 1
+      assign_public_ip:
