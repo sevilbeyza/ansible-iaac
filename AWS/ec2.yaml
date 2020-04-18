@@ -8,4 +8,4 @@
       image: ami-0323c3dd2da7fb37d
       count: 1
       instance_tags:
-      Name: Created_by_ansible
+        Name: Created_by_ansible
