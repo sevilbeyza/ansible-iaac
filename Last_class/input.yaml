@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+become: yes
+became_method: sudo
+  vars_files:
+  - some_region.yaml     #create some region yaml and read cntent someregin yaml
+  tasks:
+
+- name: say hello
+  package:
+    name: "{{package_name}}"    #key and value concept here value it changeable 
+    state: "{{state}}"
+      #sudo ansible-playbook input.yaml --extra-vars "package_name=unzip" --extra-vars="state=installed"
