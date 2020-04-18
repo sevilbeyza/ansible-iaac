@@ -3,7 +3,9 @@
   tasks:                  #for moving 2 line forward all chose command+]
   - ec2:
       instance_type: t2.micro
+      key_name: bastion_host
       region: us-east-1
       image:  ami-0323c3dd2da7fb37d
       count: 1
-      assign_public_ip:
+      instance_tags:
+      Name: created_by_ansible
