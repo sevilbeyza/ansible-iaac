@@ -1,12 +1,12 @@
 ---
-- hosts: localhost       #localhost do only in your machine            
+- hosts: localhost
   tasks:
-
-  - name: create sec group
+  - name: Create Sec Groups
     ec2_group:
       name: Allow_80
       description: "sg with rule descriptions"
       region: us-east-1
+      #state: absent
       rules:
         - proto: tcp
           ports:
