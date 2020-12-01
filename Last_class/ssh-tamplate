@@ -1,0 +1,28 @@
+---
+- name: Create a directory
+  file:
+    path: /root/.ssh
+    state: directory
+    mode: '0700'
+  when: >
+        ( "'a' in inventory_hostname" ) or
+        ( "'b' in inventory_hostname" )
+- name: Generate ssh_key
+  openssh_keypair:
+    path: /root/.ssh/id_rsa
+  when: "'ad0041dbli' in inventory_hostname"
+- name: Fetch public ssh key
+  shell: cat /root/.ssh/id_rsa.pub
+  register: ssh_keys
+  when: "'ad0041dbli' in inventory_hostname"
+- name: Set authorized key
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ ssh_keys.stdout }}"
+  when: "'b' in inventory_hostname"
+# A:/tmp/file > B:/backup/
+- synchronize:
+  src: /tmp/
+  destination: rsync://bserver:/backup/
+  delegate_to: a
